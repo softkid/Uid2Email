@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+
 
 /**
  * Created by George on 3/28/2015.
  */
+
 public class GUI extends JFrame {
+
     private JPanel rootPanel;
     private JButton chooseFileButton;
     private JTextField inputFileTextField;
@@ -41,15 +43,11 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 promptForInputFile();
                 inputFileTextField.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                Converter.setInputFile(fileChooser.getSelectedFile().getAbsolutePath());
+                Converter.scanInput();
+                inputTextArea.setText(Converter.input);
             }
         });
-
-/*        convertButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Converter.setInput(inputTextArea.getText());
-            }
-        });*/
     }
 
 
@@ -63,6 +61,10 @@ public class GUI extends JFrame {
 
     public JTextArea getOutputTextArea(){
         return this.outputTextArea;
+    }
+
+    public JTextField getInputFileTextField(){
+        return this.inputFileTextField;
     }
 
     public void promptForInputFile() {

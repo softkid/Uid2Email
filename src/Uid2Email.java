@@ -19,12 +19,13 @@ public class Uid2Email {
 
 
     public void start(){
+        Converter.setInputFile(ui.getInputFileTextField().getText());
+
+
         ui.getConvertButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Converter.setInput(ui.getInputTextArea().getText());
                 Converter.Convert();
-                ui.getOutputTextArea().setText(Converter.getOutput());
             }
         });
 

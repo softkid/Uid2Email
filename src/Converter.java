@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -17,11 +20,24 @@ public class Converter {
 
     static String input = "";
     static String output = "";
+    static String inputFile = "";
+
+    static void scanInput(){
+        Scanner scan = null;
+        try{
+            scan = new Scanner(new FileInputStream(new File(inputFile)));
+        }catch(FileNotFoundException e){
+
+        }
+
+        while(scan.hasNextLine())
+            input += scan.nextLine() + System.lineSeparator();
+    }
 
     static void Convert(){
-        Scanner scan = new Scanner(input);
-        while(scan.hasNextLine())
-            output += scan.nextLine() + System.lineSeparator();
+
+        System.out.println("INPUT FILE: " + inputFile);
+
 
         System.out.println(output);
     }
@@ -29,6 +45,10 @@ public class Converter {
 
     static void setInput(String s){
         input = s;
+    }
+
+    static void setInputFile(String s){
+        inputFile = s;
     }
 
     static String getOutput(){
