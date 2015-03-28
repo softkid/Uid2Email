@@ -23,7 +23,7 @@ public class Converter {
         while(scan.hasNextLine())
             output += scan.nextLine() + System.lineSeparator();
 
-        System.out.print(output);
+        System.out.println(output);
     }
 
 
