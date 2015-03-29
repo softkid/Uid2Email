@@ -7,10 +7,10 @@ import java.util.Scanner;
  * Created by George on 3/28/2015.
  */
 public class Converter {
-    private static Converter ourInstance = new Converter();
+    private static Converter instance = new Converter();
 
     public static Converter getInstance() {
-        return ourInstance;
+        return instance;
     }
 
     private Converter() {
