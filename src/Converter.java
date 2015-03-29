@@ -38,6 +38,9 @@ public class Converter {
 
         System.out.println("INPUT FILE: " + inputFile);
 
+        Scanner scan = new Scanner(input);
+        while(scan.hasNextLine())
+            output += scan.nextLine() + "@facebook.com" + System.lineSeparator();
 
         System.out.println(output);
     }
@@ -53,5 +56,11 @@ public class Converter {
 
     static String getOutput(){
         return output;
+    }
+
+
+    static void clearIO(){
+        input = "";
+        output = "";
     }
 }

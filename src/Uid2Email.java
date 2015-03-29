@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,12 +21,7 @@ public class Uid2Email {
         Converter.setInputFile(ui.getInputFileTextField().getText());
 
 
-        ui.getConvertButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Converter.Convert();
-            }
-        });
+
 
         ui.showUI();
 

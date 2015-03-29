@@ -48,6 +48,14 @@ public class GUI extends JFrame {
                 inputTextArea.setText(Converter.input);
             }
         });
+
+        convertButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Converter.Convert();
+                outputTextArea.setText(Converter.getOutput());
+            }
+        });
     }
 
 
