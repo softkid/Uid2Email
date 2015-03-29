@@ -9,8 +9,6 @@ public class Uid2Email {
 
     private final GUI ui;
 
-    /*private UserInterface ui;*/
-
 
     public Uid2Email(){
        ui = new GUI();
