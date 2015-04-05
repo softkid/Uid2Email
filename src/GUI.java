@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 
 /**
@@ -25,6 +27,10 @@ public class GUI extends JFrame {
     private JLabel counterLabel;
     private JButton exportToXlsButton;
     private JButton copyToClipboardButton;
+    private JLabel percentageLabel;
+    private JLabel outputFolderLabel;
+    private JLabel inputFileLabel;
+    private JTextField outputFileNameTextField;
 
     private JFileChooser fileChooser;
 
@@ -46,6 +52,25 @@ public class GUI extends JFrame {
         } catch (Exception e) {
             System.out.println("Look and Feel Problem");
         }
+
+        outputFileNameTextField.setText("Output file name");
+        outputFileNameTextField.setToolTipText("Set the output file name");
+
+        Font font = new Font("Verdana", Font.ITALIC, 12);
+        outputFileNameTextField.setFont(font);
+
+
+        outputFileNameTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                outputFileNameTextField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                outputFileNameTextField.setText("Output file name");
+            }
+        });
 
         chooseFileButton.addActionListener(new ActionListener() {
             @Override
