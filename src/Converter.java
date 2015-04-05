@@ -22,6 +22,8 @@ public class Converter {
     static String output = "";
     static String inputFile = "";
 
+    private static int lineCount = 0;
+
     static void scanInput(){
         Scanner scan = null;
         try{
@@ -30,8 +32,10 @@ public class Converter {
 
         }
 
-        while(scan.hasNextLine())
+        while(scan.hasNextLine()) {
             input += scan.nextLine() + System.lineSeparator();
+            lineCount++;
+        }
     }
 
     static void Convert(){
@@ -57,6 +61,8 @@ public class Converter {
     static String getOutput(){
         return output;
     }
+
+    static int getLineCount(){return lineCount;}
 
 
     static void clearIO(){

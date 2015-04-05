@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,14 +13,22 @@ public class GUI extends JFrame {
     private JPanel rootPanel;
     private JButton chooseFileButton;
     private JTextField inputFileTextField;
-    private JTextField textField2;
+    private JTextField outputFileTextField;
     private JButton chooseFolderButton;
-    private JProgressBar progressBar1;
+    private JProgressBar progressBar;
     private JButton convertButton;
     private JTextArea inputTextArea;
     private JTextArea outputTextArea;
+    private JButton clearAllButton;
+    private JButton exportToCsvButton;
+    private JButton exportToTxtButton;
+    private JLabel counterLabel;
+    private JButton exportToXlsButton;
+    private JButton copyToClipboardButton;
 
     private JFileChooser fileChooser;
+
+    private int percentageCompleted = 0;
 
 
     public GUI() {
@@ -45,15 +54,29 @@ public class GUI extends JFrame {
                 inputFileTextField.setText(fileChooser.getSelectedFile().getAbsolutePath());
                 Converter.setInputFile(fileChooser.getSelectedFile().getAbsolutePath());
                 Converter.scanInput();
+                counterLabel.setText(String.valueOf(Converter.getLineCount()));
                 inputTextArea.setText(Converter.input);
             }
         });
 
+
+        // Action: Press Convert Button
         convertButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //Show Loading Cursor
+                rootPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                //Convert
                 Converter.Convert();
+
+                //Display output
                 outputTextArea.setText(Converter.getOutput());
+
+                //Change back to default Cursor
+                rootPanel.setCursor(Cursor.getDefaultCursor());
             }
         });
     }
@@ -86,8 +109,21 @@ public class GUI extends JFrame {
 
     }
 
+    /**
+     * Progress Bar methods
+     */
+
+    public int getProgress(){
+        return percentageCompleted;
+    }
+
+    public void setProgress(int percentageCompleted){
+        this.percentageCompleted = percentageCompleted;
+    }
+
     public void showUI(){
         setVisible(true);
     }
+
 
 }
