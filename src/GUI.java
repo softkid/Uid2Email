@@ -33,12 +33,14 @@ public class GUI extends JFrame {
     private JTextField outputFileNameTextField;
 
     private JFileChooser fileChooser;
+    private ImageIcon img;
 
     private int percentageCompleted = 0;
 
 
     public GUI() {
         super("Uid2Email Converter");
+        img = new ImageIcon("assets/icons/icon-small.png"); //Title bar icon
         init();
     }
 
@@ -47,6 +49,11 @@ public class GUI extends JFrame {
         setContentPane(rootPanel);
         setSize(650, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(img.getImage());
+
+
+        java.net.URL url = ClassLoader.getSystemResource("assets/icons/icon-small.png");
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -149,6 +156,7 @@ public class GUI extends JFrame {
     public void showUI(){
         setVisible(true);
     }
+
 
 
 }

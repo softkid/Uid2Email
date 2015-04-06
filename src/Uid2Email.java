@@ -18,9 +18,6 @@ public class Uid2Email {
     public void start(){
         Converter.setInputFile(ui.getInputFileTextField().getText());
 
-
-
-
         ui.showUI();
 
 
