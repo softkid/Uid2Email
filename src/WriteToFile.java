@@ -19,6 +19,8 @@ public class WriteToFile {
     public static final int XLS = 2;
     public static final int CSV = 3;
 
+    private boolean outputFileExists = false;
+
 
 
     public WriteToFile(String filePath, String fileName, String outputText){
