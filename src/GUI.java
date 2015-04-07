@@ -15,7 +15,7 @@ public class GUI extends JFrame {
     private JPanel rootPanel;
     private JButton chooseFileButton;
     private JTextField inputFileTextField;
-    private JTextField outputFileTextField;
+    private JTextField outputFolderTextField;
     private JButton chooseFolderButton;
     private JProgressBar progressBar;
     private JButton convertButton;
@@ -33,6 +33,7 @@ public class GUI extends JFrame {
     private JTextField outputFileNameTextField;
 
     private JFileChooser fileChooser;
+    private JFileChooser folderChooser;
     private ImageIcon img;
 
     private int percentageCompleted = 0;
@@ -91,6 +92,14 @@ public class GUI extends JFrame {
             }
         });
 
+        chooseFolderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                promptForOutputFolder();
+                outputFolderTextField.setText(folderChooser.getSelectedFile().getAbsolutePath());
+            }
+        });
+
 
         // Action: Press Convert Button
         convertButton.addActionListener(new ActionListener() {
@@ -138,6 +147,17 @@ public class GUI extends JFrame {
         fileChooser.showOpenDialog(this);
 
         System.out.println(fileChooser.getSelectedFile().getAbsolutePath());
+
+    }
+
+    public void promptForOutputFolder(){
+        folderChooser= new JFileChooser();
+        folderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        folderChooser.setDialogTitle("Choose output folder");
+        folderChooser.showOpenDialog(this);
+
+
+        System.out.println(folderChooser.getSelectedFile().getAbsolutePath());
 
     }
 
