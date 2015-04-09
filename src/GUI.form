@@ -209,7 +209,9 @@
             <maximum-size width="150" height="750"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
     </children>
   </grid>

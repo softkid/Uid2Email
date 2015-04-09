@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import java.net.URL;
+
 
 /**
  * Created by George on 3/28/2015.
@@ -37,6 +39,8 @@ public class GUI extends JFrame {
     private JFileChooser folderChooser;
     private ImageIcon img;
 
+    private URL url;
+
     private int percentageCompleted = 0;
 
 
@@ -55,7 +59,7 @@ public class GUI extends JFrame {
         setIconImage(img.getImage());
 
 
-        java.net.URL url = ClassLoader.getSystemResource("assets/icons/icon-small.png");
+        url = ClassLoader.getSystemResource("assets/icons/icon-small.png");
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
