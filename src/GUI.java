@@ -31,6 +31,7 @@ public class GUI extends JFrame {
     private JLabel outputFolderLabel;
     private JLabel inputFileLabel;
     private JTextField outputFileNameTextField;
+    private JEditorPane googleAddEditorPane;
 
     private JFileChooser fileChooser;
     private JFileChooser folderChooser;
@@ -47,6 +48,7 @@ public class GUI extends JFrame {
 
 
     void init() {
+        googleAddEditorPane.setText("Google Add Banner!");
         setContentPane(rootPanel);
         setSize(650, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
