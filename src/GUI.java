@@ -34,6 +34,10 @@ public class GUI extends JFrame {
     private JLabel inputFileLabel;
     private JTextField outputFileNameTextField;
     private JEditorPane googleAddEditorPane;
+    private JRadioButton UIDsRadioButton;
+    private JRadioButton URLsRadioButton;
+
+    private ButtonGroup radioGroup;
 
     private JFileChooser fileChooser;
     private JFileChooser folderChooser;
@@ -52,9 +56,10 @@ public class GUI extends JFrame {
 
 
     void init() {
-        googleAddEditorPane.setText("Google Add Banner!");
+        googleAddEditorPane.setText("Google AD Banner!");
         setContentPane(rootPanel);
-        setSize(650, 600);
+        setSize(750, 750);
+        setMinimumSize(new Dimension(680, 650));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(img.getImage());
 
@@ -126,6 +131,27 @@ public class GUI extends JFrame {
                 rootPanel.setCursor(Cursor.getDefaultCursor());
             }
         });
+
+        radioGroup = new ButtonGroup();
+        radioGroup.add(UIDsRadioButton);
+        radioGroup.add(URLsRadioButton);
+
+        URLsRadioButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Converter.setExtractFromUrl(true);
+                System.out.println(Converter.getExtractFromUrl());
+            }
+        });
+
+        UIDsRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Converter.setExtractFromUrl(false);
+                System.out.println(Converter.getExtractFromUrl());
+            }
+        });
     }
 
 
@@ -182,7 +208,6 @@ public class GUI extends JFrame {
     public void showUI(){
         setVisible(true);
     }
-
 
 
 }

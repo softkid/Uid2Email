@@ -1,12 +1,14 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Created by George on 3/28/2015.
  */
 public class Converter {
+
     private static Converter instance = new Converter();
 
     public static Converter getInstance() {
@@ -17,6 +19,12 @@ public class Converter {
 
         // Empty to Avoid instantiation
     }
+
+
+
+    static ArrayList<String> inputList = new ArrayList<String>();
+
+    private static boolean extractFromUrl = false;
 
     static String input = "";
     static String output = "";
@@ -39,6 +47,7 @@ public class Converter {
     }
 
     static void Convert(){
+        if(extractFromUrl) inputList = extractInputFromUrl(inputList);
 
         System.out.println("INPUT FILE: " + inputFile);
 
@@ -47,6 +56,13 @@ public class Converter {
             output += scan.nextLine() + "@facebook.com" + System.lineSeparator();
 
         System.out.println(output);
+    }
+
+    private static ArrayList<String> extractInputFromUrl(ArrayList<String> input){
+        // Convert input from string to URL
+        // Create new UrlUidExtractor
+        // Return <String> ArrayList
+        return null;
     }
 
 
@@ -63,6 +79,15 @@ public class Converter {
     }
 
     static int getLineCount(){return lineCount;}
+
+
+    public static void setExtractFromUrl(boolean b){
+        extractFromUrl = b;
+    }
+
+    public static boolean getExtractFromUrl(){
+        return extractFromUrl;
+    }
 
 
     static void clearIO(){
