@@ -23,6 +23,7 @@ public class Converter {
 
 
     static ArrayList<String> inputList = new ArrayList<String>();
+    static ArrayList<String> outputList = new ArrayList<String>();
 
     private static boolean extractFromUrl = false;
 
@@ -32,7 +33,7 @@ public class Converter {
 
     private static int lineCount = 0;
 
-    static void scanInput(){
+    static void scanInputFromFile(){
         Scanner scan = null;
         try{
             scan = new Scanner(new FileInputStream(new File(inputFile)));
@@ -41,9 +42,19 @@ public class Converter {
         }
 
         while(scan.hasNextLine()) {
-            input += scan.nextLine() + System.lineSeparator();
-            lineCount++;
+            inputList.add(scan.nextLine() + System.lineSeparator());
         }
+    }
+
+    static void scanInputManual(String input){
+        Scanner in = new Scanner(input);
+        while(in.hasNextLine()){
+            String line = in.nextLine();
+            if(!inputList.contains(line))
+                inputList.add(line);
+        }
+
+
     }
 
     static void Convert(){
@@ -51,11 +62,9 @@ public class Converter {
 
         System.out.println("INPUT FILE: " + inputFile);
 
-        Scanner scan = new Scanner(input);
-        while(scan.hasNextLine())
-            output += scan.nextLine() + "@facebook.com" + System.lineSeparator();
-
-        System.out.println(output);
+        for(String input : inputList){
+            outputList.add(input + "@facebook.com" + System.lineSeparator());
+        }
     }
 
     private static ArrayList<String> extractInputFromUrl(ArrayList<String> input){
@@ -78,7 +87,24 @@ public class Converter {
         return output;
     }
 
-    static int getLineCount(){return lineCount;}
+    static int getLineCount(){return inputList.size();}
+
+    static String getPrintableInput(){
+        String result = "";
+        for(String input: inputList){
+            result += input;
+        }
+        return result;
+    }
+
+    static String getPrintableOutput(){
+        String result = "";
+        for(String output : outputList){
+            result += output;
+            System.out.println(output);
+        }
+        return result;
+    }
 
 
     public static void setExtractFromUrl(boolean b){

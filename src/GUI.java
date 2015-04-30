@@ -26,8 +26,8 @@ public class GUI extends JFrame {
     private JButton clearAllButton;
     private JButton exportToCsvButton;
     private JButton exportToTxtButton;
-    private JLabel counterLabel;
     private JButton exportToXlsButton;
+    private JLabel counterLabel;
     private JButton copyToClipboardButton;
     private JLabel percentageLabel;
     private JLabel outputFolderLabel;
@@ -44,6 +44,8 @@ public class GUI extends JFrame {
     private ImageIcon img;
 
     private URL url;
+
+    private FileType outputFileType;
 
     private int percentageCompleted = 0;
 
@@ -97,9 +99,9 @@ public class GUI extends JFrame {
                 promptForInputFile();
                 inputFileTextField.setText(fileChooser.getSelectedFile().getAbsolutePath());
                 Converter.setInputFile(fileChooser.getSelectedFile().getAbsolutePath());
-                Converter.scanInput();
+                Converter.scanInputFromFile();
                 counterLabel.setText(String.valueOf(Converter.getLineCount()));
-                inputTextArea.setText(Converter.input);
+                inputTextArea.setText(Converter.getPrintableInput());
             }
         });
 
@@ -110,6 +112,20 @@ public class GUI extends JFrame {
                 outputFolderTextField.setText(folderChooser.getSelectedFile().getAbsolutePath());
             }
         });
+
+        inputTextArea.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                Converter.scanInputManual(inputTextArea.getText());
+            }
+        });
+
+
 
 
         // Action: Press Convert Button
@@ -125,7 +141,7 @@ public class GUI extends JFrame {
                 Converter.Convert();
 
                 //Display output
-                outputTextArea.setText(Converter.getOutput());
+                outputTextArea.setText(Converter.getPrintableOutput());
 
                 //Change back to default Cursor
                 rootPanel.setCursor(Cursor.getDefaultCursor());
@@ -152,7 +168,38 @@ public class GUI extends JFrame {
                 System.out.println(Converter.getExtractFromUrl());
             }
         });
+
+        outPutFileSettings();
+
     }
+
+    public void outPutFileSettings(){
+        exportToTxtButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                outputFileType = FileType.TXT;
+                System.out.println("Writting to txt");
+            }
+        });
+
+        exportToCsvButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                outputFileType = FileType.CSV;
+                System.out.println("Writting to csv");
+            }
+        });
+
+        exportToXlsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                outputFileType = FileType.XLS;
+                System.out.println("Writting to xls");
+            }
+        });
+    }
+
+
 
 
     public JButton getConvertButton(){
