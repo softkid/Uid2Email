@@ -148,6 +148,12 @@ public class GUI extends JFrame {
             }
         });
 
+        uidOrUrlRadioButtonsSettings();
+        outPutFileTypeButtonsSettings();
+
+    }
+
+    private void uidOrUrlRadioButtonsSettings(){
         radioGroup = new ButtonGroup();
         radioGroup.add(UIDsRadioButton);
         radioGroup.add(URLsRadioButton);
@@ -168,12 +174,11 @@ public class GUI extends JFrame {
                 System.out.println(Converter.getExtractFromUrl());
             }
         });
-
-        outPutFileSettings();
-
     }
 
-    public void outPutFileSettings(){
+
+
+    private void outPutFileTypeButtonsSettings(){
         exportToTxtButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
