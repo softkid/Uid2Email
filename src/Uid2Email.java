@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 
 public class Uid2Email {
 
-    private final GUI ui;
+    private static GUI ui;
+
 
 
     public Uid2Email(){
@@ -17,9 +18,9 @@ public class Uid2Email {
 
     public void start(){
         Converter.setInputFile(ui.getInputFileTextField().getText());
-
         ui.showUI();
     }
+
 
     public static void main(String[] args){
         new Uid2Email().start();

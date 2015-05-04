@@ -37,6 +37,7 @@ public class GUI extends JFrame {
     private JRadioButton UIDsRadioButton;
     private JRadioButton URLsRadioButton;
 
+
     private ButtonGroup radioGroup;
 
     private JFileChooser fileChooser;
@@ -241,6 +242,7 @@ public class GUI extends JFrame {
         folderChooser.showOpenDialog(this);
 
 
+
         System.out.println(folderChooser.getSelectedFile().getAbsolutePath());
 
     }
@@ -249,12 +251,24 @@ public class GUI extends JFrame {
      * Progress Bar methods
      */
 
-    public int getProgress(){
-        return percentageCompleted;
+
+    private int currentProgress = 0;
+    private int incrBar = 0;
+
+    public int setProgressBar(int inputSize){
+        progressBar.setMaximum(0);
+        progressBar.setMaximum(100);
+        currentProgress = 0;
+        int incr = inputSize / 100;
+        return incrBar;
     }
 
-    public void setProgress(int percentageCompleted){
-        this.percentageCompleted = percentageCompleted;
+
+
+    public void updateProgressBar(){
+        currentProgress++;
+        progressBar.setValue(currentProgress);
+        progressBar.repaint();
     }
 
     public void showUI(){

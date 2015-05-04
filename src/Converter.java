@@ -27,11 +27,12 @@ public class Converter {
 
     private static boolean extractFromUrl = false;
 
-    static String input = "";
-    static String output = "";
-    static String inputFile = "";
+    private static String input = "";
+    private static String output = "";
+    private static String inputFile = "";
 
-    private static int lineCount = 0;
+
+    private static int duplicates = 0;
 
     static void scanInputFromFile(){
         Scanner scan = null;
@@ -50,9 +51,10 @@ public class Converter {
         Scanner in = new Scanner(input);
         while(in.hasNextLine()){
             String line = in.nextLine();
-            if(!inputList.contains(line))
-                inputList.add(line);
+            if(inputList.contains(line)){duplicates++; continue;}
+            inputList.add(line);
         }
+        System.out.println("Removed, "  + duplicates + " duplicates!");
 
 
     }
@@ -62,8 +64,11 @@ public class Converter {
 
         System.out.println("INPUT FILE: " + inputFile);
 
+        int counter = 0;
         for(String input : inputList){
+            counter++;
             outputList.add(input + "@facebook.com" + System.lineSeparator());
+            if(counter % 15 == 0) Uid2Email.updateProgressBar();
         }
     }
 
