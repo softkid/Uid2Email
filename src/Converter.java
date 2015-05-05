@@ -64,12 +64,15 @@ public class Converter {
 
         System.out.println("INPUT FILE: " + inputFile);
 
+        Uid2Email.getUI().setProgressBar(inputList.size());
+
         int counter = 0;
         for(String input : inputList){
             counter++;
-            outputList.add(input + "@facebook.com" + System.lineSeparator());
-            if(counter % 15 == 0) Uid2Email.updateProgressBar();
+            outputList.add(input.replaceAll("\n","") + "@facebook.com" + System.lineSeparator() );
+            if(counter % 15 == 0) Uid2Email.getUI().updateProgressBar();
         }
+
     }
 
     private static ArrayList<String> extractInputFromUrl(ArrayList<String> input){

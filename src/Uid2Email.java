@@ -15,7 +15,9 @@ public class Uid2Email {
        ui = new GUI();
     }
 
-
+    public static GUI getUI(){
+        return ui;
+    }
     public void start(){
         Converter.setInputFile(ui.getInputFileTextField().getText());
         ui.showUI();
